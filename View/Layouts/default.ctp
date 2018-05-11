@@ -60,7 +60,17 @@
                             echo $this->element('menues/menu-a');
                             break;
                     }
-                }
+                } elseif ($userRole == 'viewer') {
+                    $userPuesto = $current_user['puesto'];
+                    switch ($userPuesto) {
+                        case 'Unidad de Estadística Educativa':
+                            echo $this->element('menues/menu-e');
+                            break;
+                        default:
+                            echo $this->element('menues/menu-a');
+                            break;
+                    }
+                }            
             }    
         ?>
     <!-- ******************************* -->

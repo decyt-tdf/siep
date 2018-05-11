@@ -183,6 +183,7 @@
 </div>
 <!-- end Titulaciones Relacionadas -->
 */ ?>
+<?php /*
 <!-- Cursos Relacionados -->
 <div id="click_04" class="titulo_acordeon">Secciones Relacionadas <span class="caret"></span></div>
 <div id="acordeon_04">

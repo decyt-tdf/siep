@@ -16,6 +16,8 @@ class CursosController extends AppController {
 	        $this->Auth->allow();
 	    } elseif (($this->Auth->user('role') === 'usuario') || ($this->Auth->user('role') === 'admin')) { 
 	        $this->Auth->allow('index', 'view');
+	    } elseif (($this->Auth->user('role') === 'viewer') && ($this->Auth->user('puesto') === 'Unidad de Estadística Educativa')) {
+			$this->Auth->allow('index', 'edit', 'delete', 'activate');
 	    }
 	    /* FIN */ 
     } 
@@ -230,6 +232,9 @@ class CursosController extends AppController {
 				$this->Session->setFlash('La sección ha sido grabada.', 'default', array('class' => 'alert alert-success'));
 				//$this->redirect(array('action' => 'index'));
 				$inserted_id = $this->Curso->id;
+				$userPuesto = $this->Auth->user('puesto');
+				if ($userPuesto = 'Unidad de Estadística Educativa'): $this->redirect(array('action' => 'index'));
+				endif;
 				$this->redirect(array('action' => 'view', $inserted_id));
 			} else {
 				$this->Session->setFlash('La sección no fue grabada. Intentelo nuevamente.', 'default', array('class' => 'alert alert-danger'));
