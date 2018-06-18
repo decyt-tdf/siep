@@ -216,6 +216,7 @@
     </div>
 </div>
 <!-- end Cursos Relacionados -->
+*/ ?>
 <?php /*
 <!-- Inscripciones Relacionadas
 	<div id="click_02" class="titulo_acordeon">Inscripciones Relacionadas <span class="caret"></span></div>
