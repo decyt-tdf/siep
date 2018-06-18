@@ -16,16 +16,16 @@
       <ul class="nav navbar-nav">
         <!--<ul class="nav navbar-nav">
           <li><?php echo $this->Html->link(__('Alta de Personas'),'/personas'); ?></li>
-        </ul>
+        </ul>-->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CUEs <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><?php echo $this->Html->link(__('Instituciones'),'/centros'); ?></li>
-            <li><?php echo $this->Html->link(__('Establecimientos'),'/'); ?></li>
+            <!--<li><?php echo $this->Html->link(__('Establecimientos'),'/'); ?></li>
             <li><?php echo $this->Html->link(__('Infraestructura'),'/'); ?></li>
-            <li><?php echo $this->Html->link(__('Inventario'),'/'); ?></li>
+            <li><?php echo $this->Html->link(__('Inventario'),'/'); ?></li>-->
           </ul>
-        </li>-->
+        </li>
         <!--<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Normativas <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -68,10 +68,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver... <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><?php echo $this->Html->link(__('Instituciones'),'/centros'); ?></li>
+            <!--<li><?php echo $this->Html->link(__('Instituciones'),'/centros'); ?></li>-->
             <!--<li><?php echo $this->Html->link(__('Alumnos por Sección [nominal]'), '/cursos_inscripcions');?></li>-->
             <li><?php echo $this->Html->link(__('Alumnos por Sección [cuantitativo]'), '/matriculas');?></li>
-            <li><?php echo $this->Html->link(__('Inscriptos por año [cuantitativo]'), '/vacantes');?></li>
+            <!--<li><?php echo $this->Html->link(__('Inscriptos por año [cuantitativo]'), '/vacantes');?></li>-->
             <!--<li><?php echo $this->Html->link(__('Gráficos Estadísticos'), '/graficos'); ?></li>-->
             <!--<li><?php echo $this->Html->link('Respaldos', 'http://localhost/mybackups/import.php', array('target'=>'_blank'));?></li>-->
             <!--<li><?php echo $this->Html->link(__('Reportes'),'/report_manager/reports');?></li>-->

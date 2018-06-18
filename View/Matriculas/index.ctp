@@ -102,7 +102,9 @@
           <th><?php echo $this->Paginator->sort('plazas', 'Plazas');?></th>
           <th><?php echo $this->Paginator->sort('matricula', 'Matriculas');?></th>
           <th><?php echo $this->Paginator->sort('vacantes', 'Vacantes');?></th>
+          <?php if(!$this->Siep->isViewer()): ?>
           <th>Acciones</th>
+          <?php endif ?>  
         </tr>
       </thead>
       <tbody>
@@ -129,9 +131,12 @@
             <td>
               <?php echo $matricula['Curso']['vacantes']; ?>
             </td>
+            <?php if(!$this->Siep->isViewer()): ?>
             <td >
-              <span class="link"><?php echo $this->Html->link('<i class="glyphicon glyphicon-eye-open"></i>', array('controller' => 'Cursos', 'action'=> 'view', $matricula['Curso']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?></span>
+                <span class="link"><?php echo $this->Html->link('<i class="glyphicon glyphicon-eye-open"></i>', array('controller' => 'Cursos', 'action'=> 'view', $matricula['Curso']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>
+                  </span>
             </td>
+            <?php endif ?>
           </tr>
         <?php endforeach; ?>
       </tbody>

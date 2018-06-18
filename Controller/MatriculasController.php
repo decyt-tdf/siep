@@ -37,6 +37,7 @@ class MatriculasController extends AppController
                 $this->Auth->allow();
             break;
             case 'usuario':
+            case 'viewer':
                 $this->Auth->allow('index', 'view', 'requestDatatable');
             break;
         }
@@ -132,7 +133,7 @@ class MatriculasController extends AppController
             ));
         }
 
-        if($this->Siep->isSuperAdmin()) {
+        if(($this->Siep->isSuperAdmin()) || ($this->Siep->isViewer())) {
             $matriculas = $this->paginate('Curso',$conditions);
 
             $comboAnio = $this->Curso->find('list', array(

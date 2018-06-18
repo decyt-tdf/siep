@@ -19,6 +19,11 @@ class SiepHelper extends AppHelper
         return (AuthComponent::user('role') == 'admin') ? true : false;
     }
 
+    public function isViewer()
+    {
+        return (AuthComponent::user('role') == 'viewer') ? true : false;
+    }
+
     public function logQuery($modelo)
     {
         $log = $modelo->getDataSource()->getLog(false, false);
