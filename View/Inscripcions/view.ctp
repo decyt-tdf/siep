@@ -145,6 +145,9 @@
                   <?php if($current_user['role'] == 'usuario' || $current_user['role'] == 'superadmin'): ?>
                   <div class="opcion"><a href="http://constancia.sieptdf.tk/api/constancia/<?php echo $inscripcion['id'];?>">Constancia de Inscripción</a></div>
                   <?php endif; ?>
+                  <?php if($current_user['role'] == 'admin' || $current_user['role'] == 'superadmin') : ?>
+                  <div class="opcion"><a href="http://constancia.sieptdf.tk/api/constancia_regular/<?php echo $inscripcion['id'];?>">Constancia de Alumno Regular</a></div>
+                  <?php endif; ?>
                   <div class="opcion"><?php echo $this->Html->link(__('Listar Inscripciones'), array('action' => 'index')); ?></div>
                   <div class="opcion"><?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $inscripcion['id'])); ?> </div>
                 <?php if($current_user['role'] == 'superadmin'): ?> 

@@ -35,7 +35,7 @@
                     <b><?php echo __('División Política: '); ?></b>
                     <?php echo ($persona['Persona']['division_politica']); ?></p>
                     <b><?php echo __('Lugar de Nacimiento: '); ?></b>
-                    <?php echo ($ciudadNombre[$persona['Persona']['ciudad_id']]); ?></p>
+                    <?php echo ($persona['Persona']['pcia_nac']); ?></p>
                     <b><?php echo __('Domicilio: '); ?></b><br>
                     <?php echo ' Calle: '.$persona['Persona']['calle_nombre'].' N° '.$persona['Persona']['calle_nro'].' | Dto/Casa: '.$persona['Persona']['depto_casa'].' |  Tira/Edificio: '.$persona['Persona']['tira_edificio'].' | Ciudad: '.$ciudadNombre[$persona['Persona']['ciudad_id']]; ?></p>
                      <!-- Sí tiene barrio guardado lo muestra. -->
@@ -71,10 +71,8 @@
  <div class="unit">
         <div class="subtitulo">Opciones</div>
         <div class="opcion"><?php echo $this->Html->link(__('Listar Personas'), array('action' => 'index')); ?></div>
-      <?php if($current_user['role'] == 'superadmin' || $current_user['role'] == 'admin'): ?>
-        <div class="opcion"><?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $persona['Persona']['id'])); ?></div>
-      <?php endif; ?>
-      <?php if($current_user['role'] == 'superadmin'): ?>
+      	<div class="opcion"><?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $persona['Persona']['id'])); ?></div>
+       	<?php if($current_user['role'] == 'superadmin'): ?>
               <div class="opcion"><?php echo $this->Html->link(__('Borrar'), array('action' => 'delete', $persona['Persona']['id']), null, sprintf(__('Esta seguro de borrar al alumno %s?'), $persona['Persona']['nombre_completo_persona'])); ?></div>
       <?php endif; ?>
 	</div>

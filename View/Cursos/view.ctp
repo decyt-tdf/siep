@@ -127,7 +127,6 @@
 		</div>
     </div>
 <!-- end main -->
-<?php if(($userCentroNivel == 'Común - Inicial') || ($userCentroNivel == 'Común - Primario')): ?>
 <?php /*
 <!-- Cargos Relacionados -->
 <!--<div class="related">
@@ -200,8 +199,6 @@
 	</div>
 </div>-->
 <!-- end Cargos Relacionados -->
-*/ ?>
-<?php /*
 <!-- Materias Relacionadas -->
 <div id="click_02" class="titulo_acordeon">Unidades Curriculares Relacionadas <span class="caret"></span></div>
 <div id="acordeon_02">
@@ -239,8 +236,6 @@
     </div>
 </div>
 <!-- end Materias Relacionadas -->
-*/ ?>
-<?php endif; ?>
 <!-- Inscripciones Relacionadas -->
 <div id="click_01" class="titulo_acordeon">Inscripciones Relacionadas <span class="caret"></span></div>
 <div id="acordeon_01">
@@ -250,8 +245,8 @@
     <div class="swiper-container" style="height: 200px;">
         <div class="swiper-wrapper" >
 	<?php foreach ($curso['Inscripcion'] as $inscripcion): ?>
-	<!-- Sólo visualiza las inscripciones relacionadas del ciclo actual -->
-	<?php if (($inscripcion['ciclo_id'] == $cicloIdActualString) || $curso['Curso']['division'] == '') { ?>
+	<!-- Sólo visualiza las inscripciones relacionadas del ciclo actual y con estado CONFIRMADAS -->
+	<?php// if ((($inscripcion['ciclo_id'] == $cicloIdActualString) || $curso['Curso']['division'] == '')) { ?>
 	<div class="swiper-slide">
 	  <div class="col-md-6">
 		<div class="unit">
@@ -273,7 +268,7 @@
 		</div>
 	 </div>
   </div>		
-		<?php } ?>
+		<?php// } ?>
 		<?php endforeach; ?>
   </div>
   <!-- Add Pagination -->
@@ -285,7 +280,6 @@
     </div>
 </div>
 <!-- end Inscripciones Relacionadas -->
-<?php /*
 <!-- Ciclos Relacionadas -->
 <!--<div class="related">
 	<h3><?php echo __('Ciclos Relacionados');?></h3>
@@ -334,11 +328,11 @@
 	</div>
 </div>-->
 <!-- end Ciclos Relacionadas -->
-*/ ?>
-    <!-- Initialize Swiper -->
-    <script>
+<!-- Initialize Swiper -->
+    <!--<script>
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
     });
-    </script>
+    </script>-->
+*/?>    

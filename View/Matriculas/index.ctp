@@ -98,6 +98,7 @@
           <th><?php echo $this->Paginator->sort('Centro.sigla', 'Centro');?>  </th>
           <th><?php echo $this->Paginator->sort('anio','Año');?></th>
           <th><?php echo $this->Paginator->sort('division', 'Division');?></th>
+          <th><?php echo $this->Paginator->sort('tipo', 'Tipo');?></th>
           <th><?php echo $this->Paginator->sort('turno', 'Turno');?></th>
           <th><?php echo $this->Paginator->sort('plazas', 'Plazas');?></th>
           <th><?php echo $this->Paginator->sort('matricula', 'Matriculas');?></th>
@@ -118,6 +119,9 @@
             </td>
             <td>
               <?php echo $matricula['Curso']['division']; ?>
+            </td>
+            <td>
+              <?php echo $matricula['Curso']['tipo']; ?>
             </td>
             <td>
               <?php echo $matricula['Curso']['turno']; ?>

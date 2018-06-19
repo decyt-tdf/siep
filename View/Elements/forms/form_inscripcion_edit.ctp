@@ -1,18 +1,15 @@
 <?php echo $this->Html->css(array('/js/select2/select2.min')); ?>
 <?php echo $this->Html->script(array('tooltip', 'datepicker', 'moment', 'bootstrap-datetimepicker','select2/select2.min')); ?>
-
 <script>
     $(function(){
+        $('.s2_general').select2();
         $('.s2_centro').select2();
         $('.s2_seccion').select2();
-
         $('.s2_centro').on("change", function(){
             getSeccionDependiente($(this).val());
         });
-
         // Previo a la carga, se completan las secciones dependientes al centro
         getSeccionDependiente(<?php echo $alumno['Alumno']['centro_id']; ?>);
-
         function getSeccionDependiente(centro_id) {
             // Remueve datos de secciones
             $(".s2_seccion").empty();
@@ -43,13 +40,13 @@
   </div>
   <div class="col-xs-6 col-sm-3">
         <?php
-          echo $this->Form->input('ciclo_id', array('label'=>'Ciclo lectivo*', 'default'=>$cicloIdActual, 'disabled' => true, 'empty' => 'Ingrese un ciclo lectivo...', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+          echo $this->Form->input('ciclo_id', array('label'=>'Ciclo lectivo*', 'readonly'=>true, 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
         ?>
   </div>
   <div class="col-xs-6 col-sm-3">
       <?php
           $estados_inscripcion = array('CONFIRMADA'=>'CONFIRMADA','NO CONFIRMADA'=>'NO CONFIRMADA','BAJA'=>'BAJA','EGRESO'=>'EGRESO');
-           echo $this->Form->input('estado_inscripcion', array('label'=>'Estado de la inscripción*', 'options'=>$estados_inscripcion, 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+           echo $this->Form->input('estado_inscripcion', array('default'=>$estadoInscripcionAnteriorArray['Inscripcion']['estado_inscripcion'],'label'=>'Estado de la inscripción*', 'empty' => 'Ingrese un estado de inscripción...', 'options'=>$estados_inscripcion, 'class' => 's2_general form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
       ?>
       <?php echo $this->Form->input('usuario_id', array('type' => 'hidden')); ?>
   </div>
@@ -164,7 +161,7 @@
     <div class="unit"><strong><h3>Documentación Presentada</h3></strong><hr />
       <!--<?php
             $tipos_alta = array('Regular' => 'Regular', 'Equivalencia'=>'Equivalencia');
-            echo $this->Form->input('tipo_alta', array('label' => 'Alta tipo*', 'default' => 'Ingrese un tipo...', 'options' => $tipos_alta, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+            // $this->Form->input('tipo_alta', array('label' => 'Alta tipo*', 'default' => 'Ingrese un tipo...', 'options' => $tipos_alta, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
       ?><br>-->
     <div class="row">
       <br>
@@ -186,7 +183,7 @@
         <!--
         <div class="input-group">
             <span class="input-group-addon">
-             <?php echo $this->Form->input('partida_nacimiento_tutor', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Partida de Nacimiento Tutor</label>'));?>
+             <?php// echo $this->Form->input('partida_nacimiento_tutor', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Partida de Nacimiento Tutor</label>'));?>
             </span>
         </div>
         -->
@@ -201,17 +198,21 @@
         <!--
         <div class="input-group">
           <span class="input-group-addon">
-            <?php echo $this->Form->input('analitico', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Certificado Analítico</label>'));?>
+            <?php// echo $this->Form->input('analitico', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Certificado Analítico</label>'));?>
           </span>
         </div>
         -->
         <?php } ?>
     </div><br>
-<!--<?php
+
+        <?php
     if (($current_user['role'] == 'superadmin') || ($current_user['puesto'] == 'Dirección Colegio Secundario') || ($current_user['puesto'] == 'Supervisión Secundaria') || ($current_user['puesto'] == 'Dirección Instituto Superior') || ($current_user['puesto'] == 'Supervisión Secundaria')) {
-          echo $this->Form->input('estado', array('type' => 'hidden'));
+          // $this->Form->input('estado', array('type' => 'hidden'));
           $condiciones_aprobacion = array('Promocion directa' => 'Promocion directa', 'Examen regular' => 'Examen regular', 'Examen libre' => 'Examen libre', 'Examen de reválida' => 'Examen de reválida', 'Equivalencia' => 'Equivalencia', 'Saberes adquiridos' => 'Saberes adquiridos', 'Examen regular y Equivalencia' => 'Examen regular y equivalencia');
-          echo $this->Form->input('condicion_aprobacion', array('label' => 'Condición de aprobación*', 'options' => $condiciones_aprobacion, 'empty' => 'Ingrese una opción...', 'between' => '<br>', 'class' => 'form-control'));?><br>
+          // $this->Form->input('condicion_aprobacion', array('label' => 'Condición de aprobación*', 'options' => $condiciones_aprobacion, 'empty' => 'Ingrese una opción...', 'between' => '<br>', 'class' => 'form-control'));?><br>
+        <?php
+        /*
+        ?>
           <div class="row">
             <div class="input-group">
               <span class="input-group-addon">
@@ -219,12 +220,13 @@
               </span>
             </div>
           </div>
-          <?php  $tipos_cursa = array('Cursa algun espacio curricular'=>'Cursa algun espacio curricular', 'Sólo se inscribe a rendir final' =>'Sólo se inscribe a rendir final', 'Cursa espacio curricular y rinde final'=>'Cursa espacio curricular y rinde final');
-            echo $this->Form->input('cursa', array('label' => 'Cursa*', 'empty' => 'Ingrese una opción...', 'options' => $tipos_cursa, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+            //  $tipos_cursa = array('Cursa algun espacio curricular'=>'Cursa algun espacio curricular', 'Sólo se inscribe a rendir final' =>'Sólo se inscribe a rendir final', 'Cursa espacio curricular y rinde final'=>'Cursa espacio curricular y rinde final');
+            // $this->Form->input('cursa', array('label' => 'Cursa*', 'empty' => 'Ingrese una opción...', 'options' => $tipos_cursa, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
             $tipos_fines = array('No' => 'No', 'Sí línea deudores de materias.' => 'Sí línea deudores de materias.', 'Sí línea trayectos educativos.' => 'Sí línea   trayectos educativos.');
-            echo $this->Form->input('fines', array('label' => 'Fines*', 'empty' => 'Ingrese una opción...', 'options' => $tipos_fines, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
-          }
-      ?>-->
+            // $this->Form->input('fines', array('label' => 'Fines*', 'empty' => 'Ingrese una opción...', 'options' => $tipos_fines, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+        */
+            }
+        ?>
     </div>
       <?php echo '</div><div class="col-md-4 col-sm-6 col-xs-12">'; ?>
       <div class="unit"><strong><h3>Datos de la BAJA</h3></strong><hr />

@@ -10,7 +10,7 @@
         </div>-->
         <span class="name"><span class="glyphicon glyphicon-home"></span> <b>Centro:</b> <?php echo $this->Html->link($centros[$inscripcion['Inscripcion']['centro_id']], array('controller' => 'centros', 'action' => 'view', $inscripcion['Inscripcion']['centro_id'])); ?></span><br/>
         <span class="name"><span class="glyphicon glyphicon-info-sign"></span> <b>Código:</b> <?php echo $inscripcion['Inscripcion']['legajo_nro']; ?></span><br/>
-        <span class="name"><span class="glyphicon glyphicon-user"></span> <b>Alumno:</b> <?php echo $this->Html->link($personaNombre[$personaId[$inscripcion['Inscripcion']['alumno_id']]], array('controller' => 'alumnos', 'action' => 'view', $inscripcion['Inscripcion']['alumno_id'])); ?></span><br/>
+        <span class="name"><span class="glyphicon glyphicon-user"></span> <b>Alumno:</b> <?php echo $this->Html->link($inscripcion['Alumno']['Persona']['nombre_completo_persona'], array('controller' => 'alumnos', 'action' => 'view', $inscripcion['Inscripcion']['alumno_id'])); ?></span><br/>
         <span class="name"><span class="glyphicon glyphicon-info-sign"></span> <b>Documentación:</b> <?php echo $inscripcion['Inscripcion']['estado_documentacion']; ?></span><br/>
         <span class="name"><span class="glyphicon glyphicon-info-sign"></span> <b>Estado:</b> <?php echo $inscripcion['Inscripcion']['estado_inscripcion']; ?></span><br/>
         <!--<span class="name"><span class="glyphicon glyphicon-calendar"></span> <b>Alta:</b> <?php echo $this->Html->formatTime($inscripcion['Inscripcion']['fecha_alta']);?></span><br/>-->

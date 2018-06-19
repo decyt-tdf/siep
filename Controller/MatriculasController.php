@@ -180,6 +180,7 @@ class MatriculasController extends AppController
             curso.id,
             curso.anio,
             curso.division,
+            curso.tipo,
             curso.turno,
             curso.plazas,
             COUNT(ins.id) as matriculas,

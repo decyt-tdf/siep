@@ -16,7 +16,7 @@ class AppController extends Controller {
 	// sessions support
 	// authorization for login and logut redirect
     public $components = array(
-			// 'DebugKit.Toolbar', // Eliminar al habilitar variables de entorno
+			//'DebugKit.Toolbar', // Eliminar al habilitar variables de entorno
 			'RequestHandler',
 			'Session',
 		    'Auth' => array(
@@ -116,12 +116,14 @@ class AppController extends Controller {
   	/**
 	* Devuelve el nivel del Centro al que pertenece el usuario logueado.  
 	*/
-	function getUserCentroNivel()
+	function getUserCentroNivel($centroId)
 	{
-	    $centroId = $this->Auth->user('centro_id');
 	    $this->loadModel('Centro');
-	    $centroNivel = $this->Centro->find('list', array('fields'=>array('nivel_servicio'), 'conditions'=>array('id'=>$centroId)));
-	    return $centroNivel;
+        $this->Centro->recursive = 0;
+        $this->Centro->Behaviors->load('Containable');
+		$centroNivel = $this->Centro->findById($centroId, 'nivel_servicio');
+        $centroNivelString = $centroNivel['Centro']['nivel_servicio'];
+	    return $centroNivelString;
 	}
 
 	/**

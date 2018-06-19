@@ -17,3 +17,7 @@
 \.docker-compose\.yml\.swp
 
 mysql/
+
+docker_dev/dump/
+
+docker_dev/mysqldata/

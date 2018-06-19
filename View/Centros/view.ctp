@@ -215,6 +215,7 @@
         <?php endif; ?>
     </div>
 </div>
+<?php endif ?>
 <!-- end Cursos Relacionados -->
 */ ?>
 <?php /*

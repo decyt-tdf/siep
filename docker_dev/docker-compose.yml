@@ -1,0 +1,71 @@
+version: "3"
+services:
+    siep-mysql:
+      image: mysql:5.7
+      container_name: siep-mysql
+      volumes:
+        - ./mysqldata:/var/lib/mysql
+        - ./dump:/home
+      ports:
+        - "3306"
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=siep
+        - MYSQL_USER=siep
+        - MYSQL_PASSWORD=siep
+      networks:
+        - siep-lan
+   
+    siep-adminer:
+      image: adminer
+      networks:
+        - siep-lan
+      ports:
+        - "8080:8080"
+  
+    siep-cake-web:
+      restart: always
+      image: nginx:alpine
+      container_name: siep-cake-web
+      working_dir: /var/www/myapp
+      volumes:
+        - ..:/var/www/myapp
+        - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - "80:80"
+      depends_on:
+        - siep-cake-composer
+      networks:
+        - siep-lan
+
+    siep-cake-php:
+      restart: always
+      build: phpdocker/php-fpm
+      container_name: siep-cake-php
+      working_dir: /var/www/myapp
+      volumes:
+        - ..:/var/www/myapp
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.0/fpm/conf.d/99-overrides.ini
+      environment:
+        - MYSQL_HOST=siep-mysql
+        - CAKEPHP_DEBUG=2
+        - HOSTAPI=siep-api-web
+      depends_on:
+        - siep-mysql
+      networks:
+        - siep-lan
+    
+    siep-cake-composer:
+      image: composer
+      volumes:
+        - ..:/var/www/myapp
+      working_dir: "/var/www/myapp"
+      command: "composer install --ignore-platform-reqs"
+      depends_on:
+        - siep-cake-php
+      networks:
+        - siep-lan
+
+networks:
+  siep-lan:
+    driver: bridge

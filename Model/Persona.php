@@ -4,7 +4,8 @@ class Persona extends AppModel {
 	var $name = 'Persona';
     //var $displayField = 'apellido';
 	public $virtualFields = array('nombre_completo_persona'=> 'CONCAT(Persona.nombres, " ", Persona.apellidos)');
-
+    public $actsAs = array('Containable');
+    
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
   var $hasMany = array(
@@ -56,7 +57,7 @@ class Persona extends AppModel {
                 'message' => 'Indicar los apellidos.'
                 ),
                 'alphaBet' => array(
-                'rule' => '/^[ a-zA-ZñÑ]{3,}$/i',
+                'rule' => '/^[ áÁéÉíÍóÓúÚ a-zA-ZñÑ]{3,}$/i',
                 'message' => 'Sólo letras, mínimo tres caracteres'
                 ),
             ),

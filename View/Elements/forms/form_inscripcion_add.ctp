@@ -1,6 +1,5 @@
 <?php echo $this->Html->css(array('/js/select2/select2.min')); ?>
 <?php echo $this->Html->script(array('tooltip', 'datepicker', 'moment', 'bootstrap-datetimepicker','select2/select2.min')); ?>
-
 <script>
     $(function(){
 /*
@@ -13,7 +12,6 @@
             }
         });
 */
-
         $('.s2_centro').select2();
         $('.s2_seccion').select2();
 
@@ -37,11 +35,10 @@
 
     });
 </script>
-
 <div class="row">
   <div class="col-xs-6 col-sm-3">
       <?php
-          echo $this->Form->input('ciclo_id', array('label'=>'Ciclo lectivo*', 'default'=>$cicloIdActual, 'disabled' => true, 'empty' => 'Ingrese un ciclo lectivo...', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
+          echo $this->Form->input('ciclo_id', array('label'=>'Ciclo lectivo*', 'default'=>$cicloIdActual, 'empty' => 'Ingrese un ciclo lectivo...', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
       ?>
       <?php echo $this->Form->input('usuario_id', array('type' => 'hidden')); ?>
   </div>
@@ -104,15 +101,12 @@
                 });
         </script>
         <!-- End Autocomplete -->
-
-
         <?php
             if (($current_user['role'] == 'superadmin') || ($current_user['role'] == 'usuario')) {
                 echo $this->Form->input('centro_id', array('label'=>'Institución*', 'empty' => 'Ingrese una institución...', 'class' => 's2_centro form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
                 echo '<br>';
             }
         ?>
-
         <?php
             echo $this->Form->input('Curso', array('multiple' => true, 'label'=>'Sección*', 'empty' => 'Ingrese una sección...', 'between' => '<br>', 'class' => 's2_seccion form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
             /*
@@ -175,7 +169,6 @@
         });
     </script>
     <!-- End Autocomplete -->
-
     <div id="formPase" style="display:none;">
       <strong><h5>Pase</h5></strong>
       <input id="AutocompleteForm" class="form-control" placeholder="Indique institucion origen por nombre o CUE">
@@ -237,8 +230,6 @@
           }
       */
       ?>
-
-
     </div>
    </div>
    <!-- End Datos de alta -->
@@ -305,20 +296,16 @@
                   $(this).data('DateTimePicker').date(specifiedDate);
               }
            });
-
         $(function() {
             $( "#tipoInscripcion" ).change(function(e){
-
                 // Por defecto oculta todas las opciones de inscripcion
                 $('#formHermanoDeAlumnoRegular').hide();
                 $('#formPase').hide();
                 $('#formSituacionSocial').hide();
-
                 // Resetea los formularios al cambiar el tipo de carga
                 $('#formHermanoDeAlumnoRegular input').val('');
                 $('#formPase input').val('');
                 $('#formSituacionSocial select').val('');
-
                 var opt = $( this ).val();
                 switch(opt) {
                     case 'Hermano de alumno regular':
@@ -332,7 +319,6 @@
                     break;
                 }
             });
-
             // Quita el modo disabled del formulario, para enviar los datos!
             $('form').submit(function(e) {
                 $(':disabled').each(function(e) {
@@ -341,5 +327,4 @@
             });
         });
     </script>
-
 </div>
