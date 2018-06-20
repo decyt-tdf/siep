@@ -14,7 +14,7 @@ class FamiliarsController extends AppController {
         if(($this->Auth->user('role') === 'superadmin')  || ($this->Auth->user('role') === 'admin')) {
 	        $this->Auth->allow();
 	    } elseif ($this->Auth->user('role') === 'usuario') { 
-	        $this->Auth->allow('add', 'view', 'edit', 'autocompleteNombrePersona', 'autocompleteNombreAlumno');
+	        $this->Auth->allow('add', 'view', 'edit', 'autocompleteNombrePersona');
 	    }
     }
 
@@ -167,87 +167,6 @@ class FamiliarsController extends AppController {
 
 		$this->autoRender = false;
 	}
-
-	/* AUTOCOMPLETE PARA LOS FORMULARIOS ADD Y EDIT (INICIO).
-	*  Sí el usuario es "admin" muestra sólo los alumnos del establecimiento.
-	*  Sino sí es "usuario", muestra los alumnos del nivel correspondiente al centro.
-	*  Sino sí es "superadmin" muestra todos los alumnos.
-	*/
-	public function autocompleteNombreAlumno() {
-		$conditions = array();
-		$term = $this->request->query('term');
-
-		// Primero obtiene el termino a buscar
-		if(!empty($term))
-		{
-			// Si se busca un numero de documento.. se raliza el siguiente filtro
-			if(is_numeric($term)) {
-				$conditions[] = array('Persona.documento_nro LIKE' => $term . '%');
-			} else {
-				// Se esta buscando por nombre y/o apellidos
-				$terminos = explode(' ', trim($term));
-				$terminos = array_diff($terminos,array(''));
-
-				foreach($terminos as $termino) {
-					$conditions[] = array(
-						'OR' => array(
-							array('Persona.apellidos LIKE' => $term . '%'),
-							array('Persona.nombres LIKE' => $term . '%')
-						)
-					);
-				}
-			}
-			$userRole = $this->Auth->user('role');
-			$userCentroId = $this->getUserCentroId();
-			$this->loadModel('Centro');
-			//$nivelCentro = $this->Centro->find('list', array('fields'=>array('nivel_servicio'), 'conditions'=>array('id'=>$userCentroId)));
-			$nivelCentroArray = $this->Centro->findById($userCentroId, 'nivel_servicio');
-			$nivelCentroString = $nivelCentroArray['Centro']['nivel_servicio'];
-			if ($userRole === 'admin') {
-				$personas = $this->Alumno->find('all', array(
-						'recursive'	=> 0,
-						'contain' => 'Persona',
-						// Condiciona la búsqueda también por id de persona de los alumnos del centro correspondiente.
-						'conditions' => array($conditions, 'centro_id'=>$userCentroId),
-						'fields' 	=> array('Alumno.id', 'Persona.nombres', 'Persona.apellidos', 'Persona.documento_nro')
-					)
-				);
-			} else if (($userRole === 'usuario') && ($nivelCentroString === 'Común - Inicial - Primario')) {
-				$nivelCentroId = $this->Centro->find('list', array('fields'=>array('id'), 'conditions'=>array('nivel_servicio'=>array('Común - Inicial', 'Común - Primario'))));
-				$personas = $this->Alumno->find('all', array(
-						'recursive'	=> 0,
-						'contain' => 'Persona',
-						// Condiciona la búsqueda también por id de persona de los alumnos del centro correspondiente.
-						'conditions' => array($conditions, 'centro_id'=>$nivelCentroId),
-						'fields' 	=> array('Alumno.id', 'Persona.nombres', 'Persona.apellidos', 'Persona.documento_nro')
-					)
-				);
-			} else if ($userRole === 'usuario') {
-				// Obtiene el id de persona del nivel del centro correspondiente.
-				$nivelCentroId = $this->Centro->find('list', array('fields'=>array('id'), 'conditions'=>array('nivel_servicio'=>$nivelCentroString)));
-				$personas = $this->Alumno->find('all', array(
-						'recursive'	=> 0,
-						'contain' => 'Persona',
-						// Condiciona la búsqueda también por id de persona de los alumnos del centro correspondiente.
-						'conditions' => array($conditions, 'centro_id'=>$nivelCentroId),
-						'fields' 	=> array('Alumno.id', 'Persona.nombres', 'Persona.apellidos', 'Persona.documento_nro')
-					)
-				);
-			} else if ($userRole === 'superadmin') {
-				$personas = $this->Alumno->find('all', array(
-					'recursive'	=> 0,
-					'contain' => 'Persona',
-					// Condiciona la búsqueda también por id de persona de los alumnos del centro correspondiente.
-					'conditions' => array($conditions),
-					'fields' 	=> array('Alumno.id', 'Persona.nombres', 'Persona.apellidos', 'Persona.documento_nro')
-					)
-				);
-			}
-			echo json_encode($personas);
-			}
-			// No renderiza el layout
-			$this->autoRender = false;
-		}
-		/* FIN */
+	/* FIN */
 }
 ?>

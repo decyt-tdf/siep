@@ -79,7 +79,7 @@
             <script>
                 $( function() {
                     $( "#AutocompleteAlumno" ).autocomplete({
-                        source: "<?php echo $this->Html->url(array('action'=>'autocompleteNombreAlumno'));?>",
+                        source: "<?php echo $this->Html->url(array('controller'=>'alumnos', 'action'=>'autocompleteNombreAlumno'));?>",
                         minLength: 2,
                         select: function( event, ui ) {
                             var nombre_completo = ui.item.Persona.apellidos +" "+ ui.item.Persona.nombres +' - ' +ui.item.Persona.documento_nro;
