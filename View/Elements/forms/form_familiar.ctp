@@ -12,10 +12,7 @@
 <div class="row">
    	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="unit"><strong><h3>Datos Generales</h3></strong><hr />
-			<?php /*    
-	            echo $this->Form->input('persona_id', array('label'=>'Tutor*', 'empty' => 'Ingrese una persona como Tutor...', 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
-	        */ ?>
-		    <!-- Autocomplete para nombre de Personas -->
+			<!-- Autocomplete nombre de familiares -->
             <div>
                 <strong><h5>Nombres y Apellidos del Padre/Tutor*</h5></strong>
                 <input id="PersonaNombreCompleto" class="form-control" data-toggle="tooltip" data-placemente="bottom" placeholder="Ingrese el nombre completo">
@@ -62,13 +59,13 @@
                         };
                     });
             </script><br>
-           <!-- End Autocomplete -->
+            <!-- End Autocomplete nombre de familiares -->
         <?php  
             if ($current_user['role'] == 'admin') { 
               echo $this->Form->input('Alumno', array('label'=>'Alumno*', 'empty' => 'Ingrese un alumno...', 'options'=>$alumnosNombre ,'between' => '<br>', 'class' => 's2_alumno form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
             } else if (($current_user['role'] == 'superadmin') || ($current_user['role'] == 'usuario')) {
-          ?>
-          <!-- Autocomplete -->
+        ?>
+            <!-- Autocomplete nombre del alumno -->
             <div>
                 <strong><h5>Nombre Completo del Alumno*</h5></strong>
                 <input id="AutocompleteAlumno" class="form-control" placeholder="Buscar alumno por DNI, nombre y/o apellido">
@@ -105,7 +102,7 @@
                     };
                 });
             </script>
-            <!-- End Autocomplete -->
+            <!-- End Autocomplete nombre del alumno -->
         <?php } ?>
         </div>
 	  	<?php echo '</div><div class="col-md-6 col-sm-6 col-xs-12">'; ?>
