@@ -35,7 +35,7 @@
                     <b><?php echo __('División Política: '); ?></b>
                     <?php echo ($persona['Persona']['division_politica']); ?></p>
                     <b><?php echo __('Lugar de Nacimiento: '); ?></b>
-                    <?php echo ($ciudadNombre[$persona['Persona']['ciudad_id']]); ?></p>
+                    <?php echo ($persona['Persona']['pcia_nac']); ?></p>
                     <b><?php echo __('Domicilio: '); ?></b><br>
                     <?php echo ' Calle: '.$persona['Persona']['calle_nombre'].' N° '.$persona['Persona']['calle_nro'].' | Dto/Casa: '.$persona['Persona']['depto_casa'].' |  Tira/Edificio: '.$persona['Persona']['tira_edificio'].' | Ciudad: '.$ciudadNombre[$persona['Persona']['ciudad_id']]; ?></p>
                      <!-- Sí tiene barrio guardado lo muestra. -->
