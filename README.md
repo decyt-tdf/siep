@@ -32,3 +32,6 @@ Permite visualizar la totalidad del trabajo del equipo de desarrollo a través d
 
 <!-- Tests
  Breve descripción de cómo correr la suit de tests  -->
+
+<!-- Gitflow
+ Test de automate build con docker hub y kubernetes  -->
