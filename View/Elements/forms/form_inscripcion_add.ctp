@@ -245,11 +245,9 @@
             */?>  
             <div class="input-group">
                 <span class="input-group-addon">
-                <?php 
-                    if ($userCentroNivel != 'Común - Servicios complementarios') :
-                        $cud_estados = array('Actualizado'=>'Actualizado','Desactualizado'=>'Desactualizado','No tiene'=>'No tiene','No corresponde'=>'No corresponde'); 
-                        echo $this->Form->input('cud_estado', array('label'=>'CERTIFICADO ÚNICO DISCAPACIDAD [CUD](*Obligatorio)', 'default'=>'No corresponde', 'options'=>$cud_estados, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
-                    endif;
+                <?php
+                    $cud_estados = array('Actualizado'=>'Actualizado','Desactualizado'=>'Desactualizado','No tiene'=>'No tiene','No corresponde'=>'No corresponde'); 
+                    echo $this->Form->input('cud_estado', array('label'=>'CERTIFICADO ÚNICO DISCAPACIDAD [CUD](*Obligatorio)', 'default'=>'No corresponde', 'options'=>$cud_estados, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
                 ?>
                 </span>
             </div>
@@ -259,7 +257,7 @@
                     <?php echo $this->Form->input('fotocopia_dni', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Fotocopia DNI</label>')); ?>
                 </span>
             </div>
-        <?php if ($userCentroNivel != 'Adultos - Secundario' && $userCentroNivel != 'Adultos - Primario' && $userCentroNivel != 'Común - Servicios complementarios') : ?>  
+        <?php if ($userCentroNivel != 'Adultos - Secundario' && $userCentroNivel != 'Adultos - Primario') : ?>  
           <div class="input-group">
           <span class="input-group-addon">
             <?php echo $this->Form->input('partida_nacimiento_alumno', array('between' => '<br>', 'class' => 'form-control', 'label' => false, 'type' => 'checkbox', 'before' => '<label class="checkbox">', 'after' => '<br><i></i><br>Partida de Nacimiento Alumno</label>'));?>

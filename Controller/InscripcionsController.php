@@ -221,7 +221,6 @@ class InscripcionsController extends AppController {
                 case 'Adultos - Primario':
                 case 'Adultos - Secundario':
                 case 'Especial - Integración':
-                case 'Común - Servicios complementarios':
                 //  PERMITIDOS AGREGARR
                     break;
                 default:
@@ -260,6 +259,7 @@ class InscripcionsController extends AppController {
             ** - El ciclo seleccionado es 2020.*/
             if (($cicloId == 7) && ($userData['Centro']['sector'] == 'ESTATAL')) {
                 switch ($userData['Centro']['nivel_servicio']) {
+                    /*
                     case 'Común - Inicial':
                         if (!($userData['Centro']['id'] == 129 || $userData['Centro']['id'] == 150 || $userData['Centro']['id'] == 507 || $userData['Centro']['id'] == 512 || $userData['Centro']['id'] == 532)) {    
                             $this->Session->setFlash('Momentáneamente no se permiten las inscripciones 2020.', 'default', array('class' => 'alert alert-danger'));
@@ -272,6 +272,7 @@ class InscripcionsController extends AppController {
                             $this->redirect($this->referer());
                         }
                         break;
+                    */
                     case 'Común - Secundario':
                         if (!($userData['Centro']['id'] == 101 || $userData['Centro']['id'] == 506 || $userData['Centro']['id'] == 510 || $userData['Centro']['id'] == 526)) {
                             $this->Session->setFlash('Momentáneamente no se permiten las inscripciones 2020.', 'default', array('class' => 'alert alert-danger'));
@@ -349,25 +350,21 @@ class InscripcionsController extends AppController {
                 case 'Situación social':
                     $centroNivelServicioArray = $this->Centro->findById($userCentroId,'nivel_servicio');
                     $centroNivelServicio = $centroNivelServicioArray['Centro']['nivel_servicio'];
-                    // Si el centro no es Maternal ni Especial ni del IPI, genera código estándar.
+                    // Si el centro no es Maternal ni Especial, genera código estádar.
                     //Sino, genera un codigo específico para Maternal o Especial.
-                    if ($centroNivelServicio != 'Maternal - Inicial' && $centroNivelServicio != 'Especial - Primario' && $centroNivelServicio != 'Común - Servicios complementarios') {
+                    if ($centroNivelServicio != 'Maternal - Inicial' && $centroNivelServicio != 'Especial - Primario') {
                         // Generación del código de inscripción estándar. 
                         $codigoActual = $this->__getCodigo($ciclo, $personaDni);
                     } else {
                         // Sí el centro es Maternal.
                         // Sino si el centro es Especial.
-                        // Sino si el centro es el IPI.
                         if ($centroNivelServicio === 'Maternal - Inicial') {
                             // Generación del código de inscripción para Maternal. 
                             $codigoActual = $this->__getCodigoMaternal($ciclo, $personaDni);
                         } else if ($centroNivelServicio === 'Especial - Primario') {
                             // Generación del código de inscripción para Maternal. 
                             $codigoActual = $this->__getCodigoEspecial($ciclo, $personaDni);
-                        } else if ($centroNivelServicio === 'Común - Servicios complementarios') {
-                            // Generación del código de inscripción para el IPI. 
-                            $codigoActual = $this->__getCodigoIPI($ciclo, $personaDni);
-                        }  
+                        }
                     }
                     // Comprobación de unicidad del código de inscripción estándar.
                     $existePersonaInscripta = $this->Inscripcion->find('first',array(
@@ -464,7 +461,7 @@ class InscripcionsController extends AppController {
                 case 'Común - Primario':
                 case 'Maternal - Inicial':
                 case 'Adultos - Primario':
-                        if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['partida_nacimiento_alumno'] ==1) && ($this->request->data['Inscripcion']['certificado_vacunas'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
+                    if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['partida_nacimiento_alumno'] ==1) && ($this->request->data['Inscripcion']['certificado_vacunas'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
                                $estadoDocumentacion = "COMPLETA";
                         } else {
                                 $estadoDocumentacion = "PENDIENTE";
@@ -478,34 +475,26 @@ class InscripcionsController extends AppController {
                         }                        
                     break;
                 case 'Especial - Primario':
-                        if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['partida_nacimiento_alumno'] ==1) && ($this->request->data['Inscripcion']['certificado_vacunas'] ==1) && ($this->request->data['Inscripcion']['certificado_septimo'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
-                                $estadoDocumentacion = "COMPLETA";
-                        } else {
-                                $estadoDocumentacion = "PENDIENTE";   
-                        }                        
-                    break;
+                    if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['partida_nacimiento_alumno'] ==1) && ($this->request->data['Inscripcion']['certificado_vacunas'] ==1) && ($this->request->data['Inscripcion']['certificado_septimo'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
+                            $estadoDocumentacion = "COMPLETA";
+                    } else {
+                            $estadoDocumentacion = "PENDIENTE";   
+                    }                        
+                break;
                 case 'Adultos - Primario':
-                        if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
+                    if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
                                $estadoDocumentacion = "COMPLETA";
                         } else {
                                 $estadoDocumentacion = "PENDIENTE";
                         }
                     break;
                 case 'Adultos - Secundario':
-                        if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['certificado_septimo'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
-                                $estadoDocumentacion = "COMPLETA";
-                        } else {
-                                $estadoDocumentacion = "PENDIENTE";   
-                        }                        
-                    break;
-                case 'Común - Servicios complementarios':
-                    if($this->request->data['Inscripcion']['fotocopia_dni'] ==1) {
+                    if(($this->request->data['Inscripcion']['fotocopia_dni'] ==1) && ($this->request->data['Inscripcion']['certificado_septimo'] ==1) && ($this->request->data['Inscripcion']['cud_estado'] =='Actualizado' || $this->request->data['Inscripcion']['cud_estado'] =='No corresponde' || $this->request->data['Inscripcion']['cud_estado'] =='NULL')) {
                             $estadoDocumentacion = "COMPLETA";
                     } else {
                             $estadoDocumentacion = "PENDIENTE";   
                     }                        
                 break;
-
                 default:
                        $estadoDocumentacion = "PENDIENTE";
             }
@@ -667,14 +656,6 @@ class InscripcionsController extends AppController {
                             $estadoDocumentacion = "PENDIENTE";   
                     }                        
                 break;
-                case 'Común - Servicios complementarios':
-                    if($this->request->data['Inscripcion']['fotocopia_dni'] ==1) {
-                            $estadoDocumentacion = "COMPLETA";
-                    } else {
-                            $estadoDocumentacion = "PENDIENTE";   
-                    }                        
-                break;
-                
                 default:
                        $estadoDocumentacion = "PENDIENTE";
             }
@@ -990,11 +971,6 @@ class InscripcionsController extends AppController {
 
     private function __getCodigoAnulada($inscripcionLegajo){
         $legajo = $inscripcionLegajo."-"."ANULADA";
-        return $legajo;
-    }
-
-    private function __getCodigoIPI($ciclo, $personaDocString){
-        $legajo = $personaDocString."-".$ciclo."-"."IPI";
         return $legajo;
     }
     
