@@ -79,7 +79,7 @@
                                    <?php if(!$inscripcion['fotocopia_dni'] == 1): ?>
                                     <li><span class="label label-danger"><?php echo 'Falta Fotocopia DNI'; ?></span></li>
                                    <?php endif; ?>
-                                   <?php if($userCentroNivel != 'Adultos - Secundario' && $userCentroNivel != 'Adultos - Primario') : ?>
+                                   <?php if($userCentroNivel != 'Adultos - Secundario' && $userCentroNivel != 'Adultos - Primario' && $userCentroNivel != 'Común - Servicios complementarios') : ?>
                                     <?php if(!$inscripcion['partida_nacimiento_alumno'] == 1): ?>
                                         <li><span class="label label-danger"><?php echo 'Falta Partida Alumno'; ?></span></li>
                                     <?php endif; ?>
