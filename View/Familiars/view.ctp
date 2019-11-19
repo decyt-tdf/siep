@@ -22,8 +22,10 @@
                     <div class="subtitulo"><?php echo 'Datos de Contacto'; ?></div>
                         <b>Ciudad:</b>
                         <?php echo ($ciudadNombre); ?><br>
+                        <b>Barrio:</b>
+                        <?php echo ($barrioNombre); ?><br>
                         <b>Domicilio:</b>
-                        <?php echo ($familiarCalleNombre). ' ' . ($familiarCalleNumero); ?><br>
+                        <b><?php echo '| Calle: '?></b><?php echo $familiarCalleNombre;?><b><?php echo ' | N°: ';?></b><?php echo $familiarCalleNumero;?><b><?php echo ' | Dto/Casa: ';?></b><?php echo $familiarDeptoCasa;?><b><?php echo ' | Tira/Edificio: ';?></b><?php echo $familiarTiraEdificio;?><br>
                         <b>Telefono:</b>
                         <?php echo ($familiarTelefono); ?><br>
                         <b>Email:</b>

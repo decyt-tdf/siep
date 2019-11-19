@@ -74,11 +74,26 @@ class FamiliarsController extends AppController {
         	$ciudadNombre = $ciudadNombreArray['Ciudad']['nombre'];
         } else {
         	$ciudadNombre = '';
+		}
+		$familiarBarrioIdArray = $this->Persona->findById($personaId, 'barrio_id');
+        $familiarBarrioId = $familiarBarrioIdArray['Persona']['barrio_id'];
+		$this->loadModel('Barrio');
+        $this->Barrio->recursive = 0;
+        $this->Barrio->Behaviors->load('Containable');
+        if ($familiarBarrioId) {
+        	$barrioNombreArray = $this->Barrio->findById($familiarBarrioId, 'nombre');
+        	$barrioNombre = $barrioNombreArray['Barrio']['nombre'];
+        } else {
+        	$barrioNombre = '';
         }
         $familiarCalleNombreArray = $this->Persona->findById($personaId, 'calle_nombre');
         $familiarCalleNombre = $familiarCalleNombreArray['Persona']['calle_nombre'];
         $familiarCalleNumeroArray = $this->Persona->findById($personaId, 'calle_nro');
-        $familiarCalleNumero = $familiarCalleNumeroArray['Persona']['calle_nro'];
+		$familiarCalleNumero = $familiarCalleNumeroArray['Persona']['calle_nro'];
+		$familiarDeptoCasaArray = $this->Persona->findById($personaId, 'depto_casa');
+		$familiarDeptoCasa = $familiarDeptoCasaArray['Persona']['depto_casa'];
+		$familiarTiraEdificioArray = $this->Persona->findById($personaId, 'tira_edificio');
+        $familiarTiraEdificio = $familiarTiraEdificioArray['Persona']['tira_edificio'];
 		$familiarTelefonoArray = $this->Persona->findById($personaId, 'telefono_nro');
         $familiarTelefono = $familiarTelefonoArray['Persona']['telefono_nro'];
         $familiarEmailArray = $this->Persona->findById($personaId, 'email');
@@ -109,9 +124,7 @@ class FamiliarsController extends AppController {
         $userCentroId = $this->getUserCentroId();
         $clave = array_search($userCentroId, $AlumnoCentroIds);
 	    //Envío de datos a la vista.        
-        $this->set(compact('familiarNombre', 'familiarNacionalidad', 'familiarDNI', 'familiarOcupacion', 'familiarLugarTrabaja', 'ciudadNombre', 'familiarCalleNombre', 'familiarCalleNumero', 'familiarTelefono', 'familiarEmail', 'familiarConvivienteRta', 'familiarAutorizadoRetirarRta'/*, 'alumnoPersonaId', 'alumnoDocumentoTipo', 'alumnoDocumentoNro'*/, 'clave'));
-
-
+        $this->set(compact('familiarNombre', 'familiarNacionalidad', 'familiarDNI', 'familiarOcupacion', 'familiarLugarTrabaja', 'ciudadNombre', 'familiarCalleNombre', 'familiarCalleNumero', 'familiarTelefono', 'familiarEmail', 'familiarConvivienteRta', 'familiarAutorizadoRetirarRta'/*, 'alumnoPersonaId', 'alumnoDocumentoTipo', 'alumnoDocumentoNro'*/, 'clave', 'familiarDeptoCasa', 'familiarTiraEdificio', 'barrioNombre'));
     }
 
 	function add() {
