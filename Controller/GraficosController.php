@@ -18,6 +18,8 @@ class GraficosController extends AppController {
         switch($this->Auth->user('role'))
 		{
 			case 'admin':
+			case 'superadmin':
+			case 'usuario':
 				$this->Auth->allow('index');
 				break;
 			
@@ -42,14 +44,63 @@ class GraficosController extends AppController {
 		$cicloIdAnterior = $ciclosVecinos ['prev']['Ciclo']['id'];
 		$cicloIdPosterior = $ciclosVecinos ['next']['Ciclo']['id'];		
 		// Obtención del nombre y el nivel del centro del usuario.
-		$userCentroId = $this->getUserCentroId();
 		$this->loadModel('Centro');
 		$this->Centro->recursive = 0;
 		$this->Centro->Behaviors->load('Containable');
+		// Según el rol del usuario, muestra seleccionar institución del nivel que corresponda.
+		switch ($this->Auth->user('role')) {
+			case 'superadmin':
+			case 'usuario':
+				$centroId = null;	
+				$this->redirectToNamed();
+				$conditions = array();
+				if (!empty($this->params['named']['centro_id'])) {
+					$centroId = $this->params['named']['centro_id'];
+					$userCentroId = $centroId;
+				} else {
+					if ($this->Auth->user('puesto') == 'Supervisión Inicial/Primaria') {
+						$userCentroId = 1;	
+					} else {
+						$userCentroId = 15;
+					}
+				}
+				break;
+			case 'admin':
+				$userCentroId = $this->getUserCentroId();
+				break;
+
+			default:
+				# code...
+				break;
+		}
 		$centroNombreArray = $this->Centro->findById($userCentroId,'nombre');
 		$centroNombre = $centroNombreArray['Centro']['nombre'];
 		$nivelCentroArray = $this->Centro->findById($userCentroId, 'nivel_servicio');
         $nivelCentro = $nivelCentroArray['Centro']['nivel_servicio'];
+		switch ($this->Auth->user('puesto')) {
+			case 'Supervisión Inicial/Primaria':
+				if ($nivelCentro == 'Común - Inicial' || $nivelCentro == 'Común - Primario' || $nivelCentro == 'Adultos - Primario' || $nivelCentro == 'Especial - Primario') {
+					// Puede ver el Tablero 2019 del centro seleccionado.
+				} else {
+					$this->Session->setFlash('No tiene permisos para ver el TABLERO 2019 solicitado.', 'default', array('class' => 'alert alert-warning'));
+					$this->redirect($this->referer());
+				}
+				break;
+			case 'Supervisión Secundaria':
+			if ($nivelCentro == 'Común - Secundario' || $nivelCentro == 'Adultos - Secundario') {
+				// Puede ver el Tablero 2019 del centro seleccionado.
+			} else {
+				$this->Session->setFlash('No tiene permisos para ver el TABLERO 2019 solicitado.', 'default', array('class' => 'alert alert-warning'));
+				$this->redirect($this->referer());
+			}
+			break;
+
+			default:
+				# code...
+				break;
+		}
+
+				
 		/* INICIO: conteos generales */
 		// Conteo de los usuarios.
 		$this->loadModel('User');
@@ -951,7 +1002,7 @@ class GraficosController extends AppController {
 		 'cursosTresAnios', 'cursosTresAniosMultiple', 'cursosCuatroAnios', 'cursosCuatroAniosMultiple', 'cursosCincoAnios', 'cursosPrimerosAnios', 'cursosSegundosAnios', 'cursosTercerosAnios', 'cursosCuartosAnios',
 		 'cursosQuintosAnios', 'cursosSextosAnios', 'cursosSeptimosAnios', 'cursosAlfabetizacion', 'cursosCAP', 'inscripcionesPorHermano', 'inscripcionesComunes', 'inscripcionesPorSituacionSocial',
 		 'inscripcionesPorPase', 'bajasSalidosConPase', 'bajasSalidosSinPase', 'bajasPerdidaRegularidad', 
-		 'bajasFallecimiento', 'bajasSinEspecificar', 'titulacionesIdActivas', 'nivelCentro')); 
+		 'bajasFallecimiento', 'bajasSinEspecificar', 'titulacionesIdActivas', 'nivelCentro', 'filtro', 'userCentroId')); 
 	} 
 }
 ?>
