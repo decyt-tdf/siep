@@ -83,7 +83,7 @@ class Inscripcion extends AppModel {
 	var $validate = array(
 	   'tipo_inscripcion' => array(
             'valid' => array(
-				'rule' => array('inList', array('Común','Hermano de alumno regular','Pase','Integración','Situación social','Hijo de personal de la institución')),
+				'rule' => array('inList', array('Común','Hermano de alumno regular','Pase','Integración','Situación social','Hijo de personal de la institución','Estudiante de Intercambio')),
 				'allowEmpty' => true,
 				'message' => 'Indicar una opción'
 			)

@@ -347,6 +347,7 @@ class InscripcionsController extends AppController {
                 case 'Hermano de alumno regular':
                 case 'Integración':
                 case 'Situación social':
+                case 'Estudiante de Intercambio':
                     $centroNivelServicioArray = $this->Centro->findById($userCentroId,'nivel_servicio');
                     $centroNivelServicio = $centroNivelServicioArray['Centro']['nivel_servicio'];
                     // Si el centro no es Maternal ni Especial ni del IPI, genera código estándar.
@@ -413,6 +414,7 @@ class InscripcionsController extends AppController {
                 case 'Hermano de alumno regular':
                 case 'Integración':
                 case 'Situación social':
+                case 'Estudiante de Intercambio':
                     if (isset($existePersonaInscripta['Inscripcion']['legajo_nro'])) {
                         $this->Session->setFlash(sprintf("El alumno ya está inscripto para este ciclo en %s", $existePersonaInscripta['Centro']['nombre']), 'default', array('class' => 'alert alert-danger'));
                         $this->redirect($this->referer());

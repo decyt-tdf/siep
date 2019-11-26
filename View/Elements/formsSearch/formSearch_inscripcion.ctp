@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <?php
-    $inscripcion_tipos = array('Común'=>'Común','Hermano de alumno regular'=>'Hermano de alumno regular','Pase'=>'Pase','Integración'=>'Integración','Situación social'=>'Situación social','Hijo de personal de la institución'=>'Hijo de personal de la institución');
+    $inscripcion_tipos = array('Común'=>'Común','Hermano de alumno regular'=>'Hermano de alumno regular','Pase'=>'Pase','Integración'=>'Integración','Situación social'=>'Situación social','Hijo de personal de la institución'=>'Hijo de personal de la institución', 'Estudiante de Intercambio'=>'Estudiante de Intercambio');
     echo $this->Form->input('tipo_inscripcion', array('label' => false, 'empty' => 'Ingrese un tipo de inscripción...', 'options' => $inscripcion_tipos, 'between' => '<br>', 'class' => 'form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));
     ?>
 </div>
