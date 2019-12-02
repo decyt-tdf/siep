@@ -68,7 +68,7 @@
         echo $this->Form->input('legajo_nro', array('type' => 'hidden'));
     ?><br>
     <?php
-        $estados_inscripcion = array('CONFIRMADA'=>'CONFIRMADA','NO CONFIRMADA'=>'NO CONFIRMADA','BAJA'=>'BAJA','EGRESO'=>'EGRESO');
+        $estados_inscripcion = array('CONFIRMADA'=>'CONFIRMADA','NO CONFIRMADA'=>'NO CONFIRMADA','BAJA'=>'BAJA','EGRESO'=>'EGRESO','SIN TERMINALIDAD'=>'SIN TERMINALIDAD');
         //Si el número de legajo tiene la denominación "SINVACANTE", deshabilita la modificación del estado de inscripción.
         if ($sinVacante === 'SINVACANTE') {
         echo $this->Form->input('estado_inscripcion', array('default'=>$estadoInscripcionAnteriorArray['Inscripcion']['estado_inscripcion'],'label'=>'Estado de la inscripción (*Obligatorio)', 'disabled' =>true, 'empty' => 'Ingrese un estado de inscripción...', 'options'=>$estados_inscripcion, 'class' => 's2_general form-control', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'Seleccione una opción'));

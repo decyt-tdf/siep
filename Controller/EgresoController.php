@@ -69,7 +69,7 @@ class EgresoController extends AppController {
 		$apiParams['ciclo'] = $cicloActual;
 		$apiParams['centro_id'] = $this->params['named']['centro_id'];
 		$apiParams['curso_id'] = $this->params['named']['curso_id'];
-		$apiParams['estado_inscripcion'] = 'CONFIRMADA';
+		//$apiParams['estado_inscripcion'] = 'CONFIRMADA';
 		$apiParams['por_pagina'] = 'all';
 
 		// Consumo de API

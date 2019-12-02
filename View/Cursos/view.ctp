@@ -96,15 +96,16 @@
 					// Por defecto se ocultan las siguientes opciones
 					$showPromocion = false;
 					$showEgreso = false;
-					$showRepetir = true;
+					$showRepetir = false;
 
-				if ($curso['Curso']['division'] != '') {
+				if ($curso['Curso']['division'] != '' && $curso['Curso']['division'] != 'SIN TERMINALIDAD') {
 						/*  Los unicos 6to que promocionan
 							940007700 CEPET
 							940008300 EPET
 							940015900 SABATO
 							940015700 GUEVARA
 						*/
+						$showRepetir = true;
 						if($curso['Curso']['anio'] == '6to') {
 							if(
 								($curso['Centro']['cue'] == '940007700') ||

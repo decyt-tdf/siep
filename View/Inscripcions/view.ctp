@@ -24,9 +24,11 @@
                         <?php } else if ($inscripcion['estado_inscripcion'] == "CONFIRMADA") {; ?>
                             <span class="label label-success"><?php echo $inscripcion['estado_inscripcion']; ?></span>
                         <?php } else if ($inscripcion['estado_inscripcion'] == "NO CONFIRMADA") {?>
-                            <span class="label label-warning"><?php echo $inscripcion['estado_inscripcion']; ?></span>
-                        <?php } else if ($inscripcion['estado_inscripcion'] == "BAJA" || $inscripcion['estado_inscripcion'] == "EGRESO") {?>
                             <span class="label label-info"><?php echo $inscripcion['estado_inscripcion']; ?></span>
+                        <?php } else if ($inscripcion['estado_inscripcion'] == "SIN TERMINALIDAD" || $inscripcion['estado_inscripcion'] == "EGRESO") {?>
+                            <span class="label label-warning"><?php echo $inscripcion['estado_inscripcion']; ?></span>
+                        <?php } else if ($inscripcion['estado_inscripcion'] == "BAJA") {?>
+                            <span class="label label-danger"><?php echo $inscripcion['estado_inscripcion']; ?></span>
                         <?php } ?></p>
                         <b><?php echo __('Documentación:'); ?></b>
                             <span class="opcion"><?php echo $inscripcion['estado_documentacion']; ?></span>

@@ -272,4 +272,49 @@ class GatewayController extends AppController
         $this->response->body($result);
         $this->response->type('xls');
     }
+
+    public function excel_egresos()
+    {
+        $this->autoRender = false;
+        $hostApi = getenv('HOSTAPI');
+
+        $apiParams = [];
+        $apiParams['exportar'] = 'excel';
+        $apiParams['por_pagina'] = 'all';
+
+        // Filtros de formulario y paginacion
+        if(isset($this->params['named']['ciclo'])){
+            $apiParams['ciclo'] = $this->params['named']['ciclo'];
+        }
+        if(isset($this->params['named']['centro_id']) && $this->params['named']['centro_id'] != ''){
+            $apiParams['centro_id'] = $this->params['named']['centro_id'];
+        }
+        if(isset($this->params['named']['ciudad'])){
+            $apiParams['ciudad'] = $this->params['named']['ciudad'];
+        }
+
+        $query = http_build_query($apiParams);
+        $url = "http://{$hostApi}/api/v1/egreso?$query";
+
+        $opts = array(
+            'http' => array(
+                'method' => 'GET',
+                'agent'  => "CakePHP",
+                'header' => getenv('XHOSTCAKE').": do"
+            )
+        );
+        $context = stream_context_create($opts);
+
+        $result= file_get_contents($url,false, $context);
+
+        $fileName = "ListaDeEgresos{$apiParams['ciclo']}.xls";
+
+        header('Cache-Control: public');
+        header('Content-type: application/xls');
+        header("Content-Disposition: attachment; filename=$fileName");
+        header('Content-Length: '.strlen($result));
+
+        $this->response->body($result);
+        $this->response->type('xls');
+    }
 }

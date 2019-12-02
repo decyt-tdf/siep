@@ -64,6 +64,25 @@
 ?>
 <div class="TituloSec">Ingresantes <?php echo $apiParams['ciclo'];?></div>
 <div id="ContenidoSec">
+  <?php
+  // Permite descargar lista de egresados del ciclo anterior
+    /*
+    if(isset($apiParams['ciclo']) && isset($apiParams['centro_id'])) :
+
+        $cicloAnterior = $apiParams['ciclo'] -1;
+    */
+    ?>
+    <!--
+        <a target="_blank" class="btn btn-success pull-right" href="<?php /*echo '/gateway/excel_egresos/ciclo:'.$cicloAnterior.'/centro_id:'.$apiParams['centro_id']; */?>">
+            <span class="glyphicon glyphicon-file"></span> Exportar ingresantes por egreso
+        </a>
+        <br>
+        <br>
+    -->
+    <?php
+     // endif;
+    ?>
+
     <div class="table-responsive">
       <table id="tablaPieBuscador" class="table table-bordered table-hover table-striped    table-condensed">
       <thead>

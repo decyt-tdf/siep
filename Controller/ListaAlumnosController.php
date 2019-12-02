@@ -53,12 +53,12 @@ class ListaAlumnosController extends AppController {
 			$cicloDatoAlumno = $this->params['named']['ciclo'];
 		}
 
-			// Parametros para ejecutar API
+		// Parametros para ejecutar API
 		$apiParams = [];
 		$apiParams['ciclo'] = $cicloDatoAlumno;
 		$apiParams['centro_id'] = $this->params['named']['centro_id'];
 		$apiParams['curso_id'] = $this->params['named']['curso_id'];
-		$apiParams['estado_inscripcion'] = 'CONFIRMADA';
+		//$apiParams['estado_inscripcion'] = 'CONFIRMADA';
 		$apiParams['with'] = 'inscripcion.alumno.familiares.familiar.persona';
 		$apiParams['por_pagina'] = 'all';
 

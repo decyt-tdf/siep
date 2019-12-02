@@ -69,7 +69,7 @@ class CursosController extends AppController {
 		$nivelCentroId = $this->Curso->Centro->find('list', array('fields'=>array('id'), 'contain'=>false,'conditions'=>array('nivel_servicio'=>$nivelCentro)));
 		switch ($userRole) {
 			case 'admin':
-				$this->paginate['Curso']['conditions'] = array('Curso.centro_id' => $userCentroId, 'Curso.status' => 1, 'Curso.division !=' => '');
+				$this->paginate['Curso']['conditions'] = array('Curso.centro_id' => $userCentroId, 'Curso.status' => 1, array('or'=> array('Curso.division !=' => '', 'Curso.division' => 'SIN TERMINALIDAD')));
 				break;
 			case 'usuario':
 				if ($nivelCentro === 'Común - Inicial - Primario') {

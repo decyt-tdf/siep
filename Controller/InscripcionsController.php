@@ -75,13 +75,13 @@ class InscripcionsController extends AppController {
             'conditions'=>array(
                 'nivel_servicio'=>$nivelCentro)));
 		if ($this->Auth->user('role') === 'admin') {
-        $this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $userCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA'));    
+        $this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $userCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA', 'SIN TERMINALIDAD'));    
         } else if (($userRole === 'usuario') && ($nivelCentro === 'Común - Inicial - Primario')) {
 			$nivelCentroId = $this->Centro->find('list', array('fields'=>array('id'), 'contain'=>false, 'conditions'=>array('nivel_servicio'=>array('Común - Inicial', 'Común - Primario'))));
-			$this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $nivelCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA'));
+			$this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $nivelCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA', 'SIN TERMINALIDAD'));
 		} else if ($userRole === 'usuario') {
 			$nivelCentroId = $this->Centro->find('list', array('fields'=>array('id'), 'contain'=>false, 'conditions'=>array('nivel_servicio'=>$nivelCentro)));
-			$this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $nivelCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA'));
+			$this->paginate['Inscripcion']['conditions'] = array('Inscripcion.centro_id' => $nivelCentroId, 'Inscripcion.estado_inscripcion' =>array('CONFIRMADA', 'NO CONFIRMADA', 'BAJA', 'EGRESO', 'ANULADA', 'SIN TERMINALIDAD'));
 		}
 		/* FIN */
     	/* PAGINACIÓN SEGÚN CRITERIOS DE BÚSQUEDAS (INICIO).
