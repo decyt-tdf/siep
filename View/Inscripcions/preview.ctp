@@ -87,14 +87,15 @@ $curso = $sesion["curso"];
           <div class="col-md-4">
               <div class="unit">
  			      <div class="subtitulo">Acciones</div>
+                    <div class="opcion"><a href="<?php echo "/gateway/constancia_regular/id:".$inscripcion['id'];?>">Imprimir Constancia de Alumno Regular</a></div>
                 <?php
+                // Se quita reestricción
                 //Se visualiza solo sí se trata de un "superusuario", "usuario" o "admin" del mismo centro que la inscripción. 
-                  if($current_user['role'] == 'superadmin' || $current_user['role'] == 'usuario' || $userCentroId == $inscripcion['centro_id']):
+                //   if($current_user['role'] == 'superadmin' || $current_user['role'] == 'usuario' || $userCentroId == $inscripcion['centro_id']):
                     // y sí la inscripción del alumno tiene estado CONFIRMADA y es del ciclo actual. 
                     //if(($inscripcion['estado_inscripcion'] === 'CONFIRMADA' || $inscripcion['estado_inscripcion'] === 'EGRESO') ): ?>
-                        <div class="opcion"><a href="<?php echo "/gateway/constancia_regular/id:".$inscripcion['id'];?>">Imprimir Constancia de Alumno Regular</a></div>
                     <?php //endif; ?>
-                <?php endif; ?>  
+                <?php //endif; ?>  
               </div>
           </div>
      </div>

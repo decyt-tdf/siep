@@ -22,12 +22,12 @@ class AlumnosController extends AppController {
 					$this->Auth->allow();				
 				} else {
 					//En caso de ser ATEI
-					$this->Auth->allow('index', 'add' , 'view', 'edit', 'autocompleteNombrePersona', 'autocompleteNombreAlumno');	
+					$this->Auth->allow('index', 'add' , 'view', 'edit', 'autocompleteNombrePersona', 'autocompleteNombreAlumno', 'editConstancia');	
 				}
 				break;
 			case 'usuario':
 			case 'admin':
-				$this->Auth->allow('index', 'add' , 'view', 'edit', 'autocompleteNombrePersona', 'autocompleteNombreAlumno');
+				$this->Auth->allow('index', 'add' , 'view', 'edit', 'autocompleteNombrePersona', 'autocompleteNombreAlumno', 'editConstancia');
 				break;
 
 			default:
