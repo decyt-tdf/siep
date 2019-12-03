@@ -151,9 +151,9 @@ class Alumno extends AppModel {
 
 //Validaciones
 
-        var $validate = array(
+		var $validate = array(
 			'persona_id' => array(
-			    'required' => array(
+				'required' => array(
 				'rule' => 'notBlank',
 				'required' => true,
 				'message' => 'Indicar los nombres.'
@@ -162,23 +162,23 @@ class Alumno extends AppModel {
 	 	        'rule' => 'naturalNumber',
 	 	        ),
 			),
-            'centro_id' => array(
-                'required' => array(
-	   			'rule' => 'notBlank',
-                'required' => 'create',
-	  		    'message' => 'Indicar un centro.'
+			'centro_id' => array(
+				'required' => array(
+					'rule' => 'notBlank',
+					'required' => 'create',
+					'message' => 'Indicar un centro.'
 				),
 				'numeric' => array(
-	                'rule' => 'naturalNumber',
-	            ),
-            ),
-            'legajo_fisico_nro' => array(
-				'alphaBet' => array(
+					'rule' => 'naturalNumber',
+					),
+				),
+				'legajo_fisico_nro' => array(
+					'alphaBet' => array(
 					'allowEmpty' => true,
 					'rule' => '/^[ áÁéÉíÍóÓúÚ a-zA-ZñÑ 0-9 -]{3,}$/i',
 					'message' => 'Sólo letras, números y el caracter especial -.'
+					)
 				)
-            )
 	    );
 
 	//Funciones privadas.

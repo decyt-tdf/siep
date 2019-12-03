@@ -120,6 +120,29 @@ class GatewayController extends AppController
         $this->response->type('pdf');
     }
 
+    public function constancia_regular_preview()
+    {
+        $this->autoRender = false;
+        $hostApi = getenv('HOSTAPI');
+        $id = $this->params['named']['id'];
+
+        $url = "api/v1/constancia_regular_preview/{$id}";
+
+        $response = $this->Siep->consumeApi($url);
+
+        // Muestra el resultado de un Array como JSON
+        // $this->response->type('json');
+        // $json = json_encode($response);
+        // $this->response->body($json);
+        $array = Array(
+            "valor1"=>"1",
+            "valor2"=>"2"
+        );
+        $this->Session->write('inscripcion',$response);
+
+        $this->render('/Inscripcions/preview');
+    }
+
     public function excel_inscripcion()
     {
         $this->autoRender = false;

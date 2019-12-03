@@ -168,7 +168,7 @@
                     // y sí la inscripción del alumno tiene estado CONFIRMADA y es del ciclo actual. 
                     //if(($inscripcion['estado_inscripcion'] === 'CONFIRMADA' || $inscripcion['estado_inscripcion'] === 'EGRESO') ): ?>
                         <div class="opcion"><a href="<?php echo "/gateway/constancia/id:".$inscripcion['id'];?>">Constancia de Inscripción</a></div>
-                        <div class="opcion"><a href="<?php echo "/gateway/constancia_regular/id:".$inscripcion['id'];?>">Constancia de Alumno Regular</a></div>
+                        <div class="opcion"><a href="<?php echo "/gateway/constancia_regular_preview/id:".$inscripcion['id'];?>">Constancia de Alumno Regular</a></div>
                     <?php //endif; ?>
                     <?php if ($inscripcion['estado_inscripcion'] != 'ANULADA') : ?>
                     <div class="opcion"><?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $inscripcion['id'])); ?> </div>
