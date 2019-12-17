@@ -203,7 +203,7 @@ class PromocionController extends AppController {
 		$centro = array_pop($centro);
 		$curso = array_pop($curso);
 		//Sí el usuario es del nivel Secundario, visualiza en las opciones las secciones ficticias. 
-		if($nivelServicio == 'Común - Secundario') {
+		if($centro['nivel_servicio'] == 'Común - Secundario') {
 			// Sí el anio de la sección tiene la denominación tradicional, muestra las secciones de años superiores.
 			if ($curso['anio'] == '1ro' || $curso['anio'] == '2do' || $curso['anio'] == '3ro' || $curso['anio'] == '4to' || $curso['anio'] == '5to' || $curso['anio'] == '6to' || $curso['anio'] == '7mo') {
 				$secciones = $this->Curso->find('list', array(
@@ -235,6 +235,29 @@ class PromocionController extends AppController {
 				'anio >'=>$curso['anio']
 				))
 			);
+		}
+		if ($centro['nivel_servicio'] == 'Maternal - Inicial') { 
+			// Sí el anio de la sección tiene la denominación tradicional, muestra las secciones de años superiores.
+			if ($curso['anio'] == '1ro' || $curso['anio'] == 'Sala de 1 año' || $curso['anio'] == 'Sala de 2 años' || $curso['anio'] == 'Sala de 3 años' || $curso['anio'] == 'Sala de 4 años' || $curso['anio'] == 'Sala de 5 años') {
+				$secciones = $this->Curso->find('list', array(
+					'recursive'=>-1,
+					'fields'=>array('id','nombre_completo_curso'),
+					'conditions'=>array(
+						'centro_id'=>$this->params['named']['centro_id'],
+						'anio >'=>$curso['anio']
+						)
+					)
+				);
+			} else { // Sino muestra todas las secciones.
+				$secciones = $this->Curso->find('list', array(
+					'recursive'=>-1,
+					'fields'=>array('id','nombre_completo_curso'),
+					'conditions'=>array(
+						'centro_id'=>$this->params['named']['centro_id'],
+						)
+					)
+				);
+			}
 		}
 
 		$this->set(compact('cicloaPromocionar','centro','curso','cursosInscripcions','cicloaPromocionar','cicloSiguienteNombre','secciones','showExportBtn'));
