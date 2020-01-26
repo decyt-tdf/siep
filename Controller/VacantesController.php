@@ -50,9 +50,8 @@ class VacantesController extends AppController
 
     public function index() {
         $showBtnExcel = false;
-
+        // Obtener combo Centros.
         $this->loadModel('Centro');
-
         $this->Centro->recursive = -1;
         $comboSectorDb = $this->Centro->find('all', array('fields'=>'DISTINCT sector'));
         // Sanatizo el combo sector, a una simple lista
@@ -61,12 +60,20 @@ class VacantesController extends AppController
             $sector = $v['Centro']['sector'];
             $comboSector[$sector] = $sector;
         }
-
+        // Obtención combo Ciudades.
         $this->loadModel('Ciudad');
-        $comboCiudad = $this->Ciudad->find('list', array('fields'=>array('nombre')));
-
+        $this->Ciudad->recursive = 0;
+        $this->Ciudad->Behaviors->load('Containable');
+        $comboCiudad = $this->Ciudad->find('list', array(
+            'fields'=>array('nombre'),
+            'contain'=>false));
+        // Obtención combo Ciclos.
         $this->loadModel('Ciclo');
-        $comboCiclo = $this->Ciclo->find('list', array('fields'=>array('id', 'nombre')));
+        $this->Ciclo->recursive = 0;
+        $this->Ciclo->Behaviors->load('Containable');
+        $comboCiclo = $this->Ciclo->find('list', array(
+            'fields'=>array('id', 'nombre'),
+            'contain'=>false));
         $cicloIdUltimo = $this->getLastCicloId();
         $cicloIdActual = $this->getActualCicloId();
 
