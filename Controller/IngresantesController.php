@@ -43,9 +43,13 @@ class IngresantesController extends AppController
         }
 
         $this->loadModel('Ciudad');
+        $this->Ciudad->recursive = 0;
+        $this->Ciudad->Behaviors->load('Containable');
         $comboCiudad = $this->Ciudad->find('list', array('fields'=>array('nombre')));
 
         $this->loadModel('Ciclo');
+        $this->Ciclo->recursive = 0;
+        $this->Ciclo->Behaviors->load('Containable');
         $comboCiclo = $this->Ciclo->find('list', array('fields'=>array('id', 'nombre')));
         $cicloIdUltimo = $this->getLastCicloId();
         $cicloNombreUltimo = $comboCiclo[$cicloIdUltimo];
