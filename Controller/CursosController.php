@@ -178,11 +178,12 @@ class CursosController extends AppController {
 		$this->loadModel('Ciclo');
 		$this->Ciclo->recursive = 0;
         $this->Ciclo->Behaviors->load('Containable');
-        $cicloIdActual = $this->getActualCicloId();
+		$cicloIdActual = 6;
+		//$cicloIdActual = $this->getActualCicloId(); Para utilizar luego de Agosto.
         $cicloIdActualArray = $this->Ciclo->findById($cicloIdActual, 'id');
         $cicloIdActualString = $cicloIdActualArray['Ciclo']['id'];
 
-		// Ciclo Actua y Posterior
+		// Ciclo Actual y Posterior
 		$cicloActual = $this->Ciclo->findById($cicloIdActual);
 		$cicloPosterior = $this->Ciclo->findByNombre(($cicloActual['Ciclo']['nombre'] + 1));
 
