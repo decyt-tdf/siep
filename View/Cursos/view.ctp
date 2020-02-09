@@ -77,7 +77,7 @@
 		    <div class="unit">
 				<?php
 
-				$cicloDatoAlumno = $cicloActual['Ciclo']['nombre'];
+				$cicloDatoAlumno = $cicloPosterior['Ciclo']['nombre'];
 				if(empty($cursoDivisionString))
 				{
 					$cicloDatoAlumno = $cicloPosterior['Ciclo']['nombre'];
