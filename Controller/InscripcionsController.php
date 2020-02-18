@@ -917,7 +917,7 @@ class InscripcionsController extends AppController {
         /* Sí no es "superadmin" ve en combobox de ciclos, el actual y el posterior. 
         *  Sino ve todos los ciclos.
         */
-        if ($userRol != 'superadmin') {
+        if ($userRol == 'admin') {
 			$ciclos = $this->getTwoLastCicloNombres($cicloIdActualString, $cicloIdUltimoString);
 		} else {
             $ciclos = $this->Ciclo->find('list', array('fields'=>array('id','nombre'), 'contain'=>false));
