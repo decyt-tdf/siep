@@ -188,7 +188,8 @@
 				<?php  if($showEgreso) : ?>
 					<div class="opcion"><?php echo $this->Html->link(__('Egresar'), array('action' => 'index','controller' => 'Egreso',
 							'centro_id'=>$curso['Centro']['id'],
-							'curso_id'=>$curso['Curso']['id']
+							'curso_id'=>$curso['Curso']['id'],
+							'ciclo' =>$cicloActual['Ciclo']['nombre']
 						)); ?>
 					</div>
 				<?php endif; ?>
