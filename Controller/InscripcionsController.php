@@ -261,13 +261,15 @@ class InscripcionsController extends AppController {
             if (($cicloId == 7) && ($userData['Centro']['sector'] == 'ESTATAL')) {
                 switch ($userData['Centro']['nivel_servicio']) {
                     case 'Común - Inicial':
-                        if (!($userData['Centro']['id'] == 129 || $userData['Centro']['id'] == 150 || $userData['Centro']['id'] == 507 || $userData['Centro']['id'] == 512 || $userData['Centro']['id'] == 532)) {    
+                        // No afecta a los jardines de Tolhuin ni de Experimentales.
+                        if (!($userData['Centro']['id'] == 129 || $userData['Centro']['id'] == 150 || $userData['Centro']['id'] == 507 || $userData['Centro']['id'] == 512 || $userData['Centro']['id'] == 532 || $userData['Centro']['id'] == 186 || $userData['Centro']['id'] == 146)) {    
                             $this->Session->setFlash('Momentáneamente no se permiten las inscripciones 2020.', 'default', array('class' => 'alert alert-danger'));
                             $this->redirect($this->referer());
                         }
                         break;
                     case 'Común - Primario':
-                        if (!($userData['Centro']['id'] == 502 || $userData['Centro']['id'] == 505 || $userData['Centro']['id'] == 508 || $userData['Centro']['id'] == 509 || $userData['Centro']['id'] == 511)) {    
+                        // No afecta a las escuelas de Tolhuin ni de Experimentales.
+                        if (!($userData['Centro']['id'] == 502 || $userData['Centro']['id'] == 505 || $userData['Centro']['id'] == 508 || $userData['Centro']['id'] == 509 || $userData['Centro']['id'] == 511 || $userData['Centro']['id'] == 89 || $userData['Centro']['id'] == 195)) {    
                             $this->Session->setFlash('Momentáneamente no se permiten las inscripciones 2020.', 'default', array('class' => 'alert alert-danger'));
                             $this->redirect($this->referer());
                         }
