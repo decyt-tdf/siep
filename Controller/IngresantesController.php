@@ -67,9 +67,13 @@ class IngresantesController extends AppController
         $apiParams['division'] = 'sin';
         $apiParams['order'] = 'anio';
         $apiParams['order_dir'] = 'asc';
-        // Solo se muestran salas de 4 y 1ro
-        $apiParams['anio'] = ['Sala de 4 años','1ro'];
-
+        // Sí el "role" de usuario no es "admin", solo muestran salas de 4 y 1ro.
+        if ($this->Auth->user('role') != 'admin') {
+            $apiParams['anio'] = ['Sala de 4 años','1ro'];
+        } else {
+            $apiParams['anio'] = ['Sala de 4 años', 'Sala de 5 años', '1ro', '2do', '3ro', '4to', '5to', '6to', '7mo'];
+        }
+        
         // Filtros de formulario y paginacion
         if(isset($this->request->query['ciclo'])){
             $apiParams['ciclo'] = $this->request->query['ciclo'];
