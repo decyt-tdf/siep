@@ -258,6 +258,7 @@ class InscripcionsController extends AppController {
             ** - Es un usuario del nivel "Común-Secundario, Común Incial o Común Primario",
             ** - Del sector "ESTATAL",
             ** - El ciclo seleccionado es 2020.*/
+            /*
             if (($cicloId == 7) && ($userData['Centro']['sector'] == 'ESTATAL')) {
                 switch ($userData['Centro']['nivel_servicio']) {
                     case 'Común - Inicial':
@@ -274,16 +275,15 @@ class InscripcionsController extends AppController {
                             $this->redirect($this->referer());
                         }
                         break;
-                    /*
                     case 'Común - Secundario':
                         if (!($userData['Centro']['id'] == 101 || $userData['Centro']['id'] == 506 || $userData['Centro']['id'] == 510 || $userData['Centro']['id'] == 526)) {
                             $this->Session->setFlash('Momentáneamente no se permiten las inscripciones 2020.', 'default', array('class' => 'alert alert-danger'));
                             $this->redirect($this->referer());
                         }
                         break;
-                    */    
                 }
             }
+            */
             $this->Inscripcion->Ciclo->recursive = 0;
             $ciclos = $this->Inscripcion->Ciclo->findById($cicloId, 'nombre');
             $ciclo = substr($ciclos['Ciclo']['nombre'], -2);
