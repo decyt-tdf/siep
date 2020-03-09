@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <ul class="nav navbar-nav">
-          <li class="active"><?php echo $this->Html->link(__('TABLERO 2019'),'/graficos'); ?></li>
+          <li class="active"><?php echo $this->Html->link(__('TABLERO 2020'),'/graficos'); ?></li>
         </ul>
         <ul class="nav navbar-nav">
           <li><?php echo $this->Html->link(__('Alta de Personas'),'/personas'); ?></li>

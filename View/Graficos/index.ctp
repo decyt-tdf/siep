@@ -19,7 +19,7 @@
 <div class="jumbotron">
   <div class="container text-center">
   <hr>  
-  <h3><i class= "glyphicon glyphicon-dashboard"></i> TABLERO 2019 | <?php echo $centroNombre; ?></h3>      
+  <h3><i class= "glyphicon glyphicon-dashboard"></i> TABLERO 2020 | <?php echo $centroNombre; ?></h3>      
     <!--<p>Aquí podríamos indicar AVISOS SEMANALES.</p>-->
   </div>
 </div>
@@ -377,7 +377,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">
           <div class="text-left">
-            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-home"></i> <strong> PROMOCIONES</strong>', array('controller' => 'promocion', 'action' => '/view?centro_id='.$userCentroId), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaPromociones?></span></span>
+            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-home"></i> <strong> PROMOCIONES 2019/20</strong>', array('controller' => 'promocion', 'action' => '/view?centro_id='.$userCentroId), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaPromociones?></span></span>
           </div>
         </div>  
         <div class="panel-body">
@@ -442,7 +442,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">
           <div class="text-left">
-            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-home"></i> <strong> REPITENCIAS</strong>', array('controller' => 'repitentes', 'action' => 'view?centro_id='.$userCentroId), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaRepitencias?></span></span>
+            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-home"></i> <strong> REPITENCIAS 2019/20</strong>', array('controller' => 'repitentes', 'action' => 'view?centro_id='.$userCentroId), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaRepitencias?></span></span>
           </div>
         </div>  
           <div class="panel-body">
@@ -513,7 +513,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">
           <div class="text-left">
-            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-list-alt"></i> <strong> MATRÍCULA - EGRESOS</strong>', array('controller' => 'cursos_inscripcions', 'action' => 'index/ciclo_id:4/centro_id:'.$userCentroId.'/turno:/anio:/division:/estado_inscripcion:EGRESO'), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaEgresos?></span></span>
+            <span class="link"><?php echo $this->Html->link('<i class= "glyphicon glyphicon-list-alt"></i> <strong> EGRESOS 2019</strong>', array('controller' => 'cursos_inscripcions', 'action' => 'index/ciclo_id:4/centro_id:'.$userCentroId.'/turno:/anio:/division:/estado_inscripcion:EGRESO'), array('class' => 'btn btn-primary', 'target' => '_blank', 'escape' => false)); ?><span class="badge"> | <?php echo $matriculaEgresos?></span></span>
           </div>
         </div>
         <div class="panel-body">
