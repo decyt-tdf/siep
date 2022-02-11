@@ -18,7 +18,7 @@
         "source": "https://github.com/cakephp/cakephp"
     },
     "require": {
-        "cakephp/cakephp": "^2.9.5",
+        "cakephp/cakephp": "^2.9.5 || ^4.0.0",
         "cakedc/migrations":"^2.5",
         "roave/security-advisories": "dev-master"
     },
